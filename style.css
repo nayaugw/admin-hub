@@ -174,7 +174,7 @@ label {
   color: var(--text);
   margin-bottom: 6px;
 }
-input, select, textarea {
+input:not([type="checkbox"]), select, textarea {
   width: 100%;
   padding: 12px 14px;
   border: 1.5px solid #ddd;
