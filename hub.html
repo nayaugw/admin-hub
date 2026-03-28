@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Admin Hub — BBB Dining</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <h1>BBB Dining Group</h1>
+      <p>Admin Hub</p>
+    </div>
+
+    <div class="header-bar">
+      <span class="user-name" id="user-name"></span>
+      <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+
+    <!-- Tool Cards -->
+    <div class="tool-grid" id="tool-grid"></div>
+
+    <!-- Staff Management (admin only) -->
+    <div id="staff-section" class="hidden">
+      <h2 class="section-title">Manage Staff Access</h2>
+      <div class="card">
+        <button class="btn btn-primary btn-small mb-16" onclick="openAddStaffModal()">+ Add Manager</button>
+        <div style="overflow-x:auto">
+          <table class="staff-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Role</th>
+                <th>Tools</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="staff-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add/Edit Staff Modal -->
+  <div class="modal-overlay" id="staff-modal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 id="modal-title">Add Manager</h3>
+        <button class="modal-close" onclick="closeStaffModal()">&times;</button>
+      </div>
+      <div class="form-group">
+        <label>Name</label>
+        <input type="text" id="modal-name" placeholder="Manager name">
+      </div>
+      <div class="form-group">
+        <label>Passcode</label>
+        <input type="text" id="modal-passcode" placeholder="Enter passcode">
+      </div>
+      <div class="form-group">
+        <label>Tools Access</label>
+        <div class="tool-checkboxes" id="modal-tools"></div>
+      </div>
+      <input type="hidden" id="modal-staff-id">
+      <button class="btn btn-primary mt-8" onclick="saveStaff()">Save</button>
+    </div>
+  </div>
+
+  <script src="shared.js"></script>
+  <script src="hub.js"></script>
+</body>
+</html>
