@@ -176,6 +176,28 @@ export default {
       }
     }
 
+    // ─── GET /api/status/staff-dashboard — proxy to staff dashboard ───
+    if (path === '/api/status/staff-dashboard' && method === 'GET') {
+      try {
+        const res = await fetch('https://staff-dashboard.pages.dev/api/status');
+        if (!res.ok) throw new Error('Staff dashboard API unavailable');
+        const data = await res.json();
+        const lines = [];
+        if (data.pending_leave > 0) {
+          lines.push({ text: data.pending_leave + ' pending leave request' + (data.pending_leave !== 1 ? 's' : ''), alert: data.pending_leave > 3 });
+        }
+        if (data.total_staff > 0) {
+          lines.push({ text: data.total_staff + ' active staff', alert: false });
+        }
+        if (data.pending_leave === 0) {
+          lines.push({ text: 'No pending leave requests', ok: true });
+        }
+        return new Response(JSON.stringify({ success: true, data: { lines } }), { headers: JSON_HEADERS });
+      } catch (err) {
+        return new Response(JSON.stringify({ success: true, data: { lines: [{ text: 'Status unavailable', loading: true }] } }), { headers: JSON_HEADERS });
+      }
+    }
+
     // ─── Serve static files (Cloudflare Pages handles this automatically) ───
     // Fall through — Pages will serve index.html, hub.html, etc.
     return env.ASSETS ? env.ASSETS.fetch(request) : new Response('Not found', { status: 404 });
