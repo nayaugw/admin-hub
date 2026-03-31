@@ -18,7 +18,7 @@ const TOOLS = [
     slug: 'staff-dashboard',
     name: 'Staff Dashboard',
     icon: '👥',
-    url: 'https://staff-dashboard.pages.dev/',
+    url: 'https://staff-dashboard-3f2.pages.dev/',
     live: true,
   },
   {
