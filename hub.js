@@ -32,8 +32,8 @@ const TOOLS = [
     slug: 'dining-club',
     name: 'Dining Club',
     icon: '🎁',
-    url: null,
-    live: false,
+    url: 'https://dining-club-admin.pages.dev/',
+    live: true,
   },
 ];
 
